@@ -1,0 +1,26 @@
+<%
+convert_epoch_to_time = function(milliseconds){
+    console.log(milliseconds)
+    var seconds = Math.floor(milliseconds / 1000);
+    var minutes = Math.floor(seconds / 60);
+    seconds %= 60;
+    
+    var hours = Math.floor(minutes / 60);
+    minutes %= 60;
+
+    var ret = "";
+    if(hours){
+        ret += hours + "hour(s) " + minutes + " minute(s) " + seconds + "second(s)";
+    }
+    else if(minutes){
+        ret += minutes + " minute(s) " + seconds + "second(s)";
+    }
+    else if(seconds){
+        ret += seconds + "second(s)";
+    }
+    else {
+        ret = "0 second(s)";
+    }
+    return ret;
+}
+%>

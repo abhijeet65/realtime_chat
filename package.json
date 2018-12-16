@@ -1,0 +1,30 @@
+{
+  "name": "sockets_chat_application",
+  "version": "1.0.0",
+  "description": "this is a realtime web chat application",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Puneethnaik/realtime_chat_application.git"
+  },
+  "author": "puneeth naik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Puneethnaik/realtime_chat_application/issues"
+  },
+  "homepage": "https://github.com/Puneethnaik/realtime_chat_application#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "client-sessions": "^0.8.0",
+    "connect": "^3.6.6",
+    "cron": "^1.3.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "mysql": "^2.16.0",
+    "rethinkdb": "^2.3.3",
+    "socket.io": "^2.1.1"
+  }
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="css/chat_window.css">
+  </head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+<script>
+  $(function(){
+    var socket = io();
+    userObj = {
+      'id' : <%-id%>
+    }
+    socket.emit("connected", userObj)
+    $('form').submit(function(){
+        msgObj = {
+            'from' : <%-id%>,
+            'to' : 'hello'
+        }
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+    })
+    socket.on("connected", function(userObj){
+      console.log("new user" + JSON.stringify(userObj));
+      $('#' + userObj.id).removeClass("disconnected");
+      $('#' + userObj.id).addClass("connected");
+
+      socket.on('disconnection', function(userId){
+        console.log("this user disconnected" + userId);
+        $('#' + userId).removeClass("connected");
+        $('#' + userId).addClass("disconnected");
+      })
+      
+    })
+    socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+    });
+  });
+  
+
+</script>
+  <body>
+    <div class = "container nopadding">
+      <div class = "row">
+        <div class = "col-md-3" id = "contactsContainer">
+            <ul>
+              <% for(var i = 0 ; i < users.length; i++){
+                  if(users[i].id != id){
+                %>
+                  <li id = <%-users[i].id%> class = <%if(onlineUsers[users[i].id] === "online"){%>connected<%} else{%>disconnected<%}%> "><span><img src = "images/default_dp.png"></span><span><%-users[i].name%></span> </li>
+              <%}
+                  }%>
+            </ul>
+        </div>
+      <div class = "col-md-9" id = "messageContainer">
+        <ul id="messages"></ul>
+      </div>
+      </div>
+    </div>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+  </body>
+</html>

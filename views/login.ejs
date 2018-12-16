@@ -1,0 +1,43 @@
+<% include ./partials/header %>
+
+
+<div class="container"  style="align-items: center; margin-top:12%;max-width:600px">
+            <%if(type=="loginError"){%>
+            <div class="alert alert-warning">
+                <strong>Error!</strong> <%= message%>
+            </div>
+            <%}%>
+            
+        <div class="card">
+        
+            <div class="card-header" data-background-color="purple">
+                <h4 class="title">Faculty Login</h4>
+            </div>
+            <div class="card-content">
+                <form action="/api/loginlogout/login" method="post">
+                    <div class="row" style="margin-left:20px">
+                      <br />
+                        <div>
+                            <div class="form-group label-floating">
+                                <label>Email</label> <!--give class as class="control-label" for effect-->
+                                <input type="text" class="form-control" name="email" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group label-floating">
+                                <label class="">Password</label>
+                                <input type="password" class="form-control" name="password"/>
+                            </div>
+                        </div>
+
+                        <div>
+                          <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                      </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+</div>
+
+<% include ./partials/footer %>
